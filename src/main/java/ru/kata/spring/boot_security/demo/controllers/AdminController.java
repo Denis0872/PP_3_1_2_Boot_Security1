@@ -31,7 +31,8 @@ public class AdminController {
         userRepository.save(user);
         return redirect();
     }
-        @GetMapping("/edit/{id}")
+
+    @GetMapping("/edit/{id}")
     public String updateUser(Model model, @PathVariable("id") long id){
         model.addAttribute("user", userRepository.findById(id));
         return "edit_user";
@@ -44,21 +45,6 @@ public class AdminController {
         return redirect();
 
     }
-
-
-//    @GetMapping("/edit/{id}")
-//    public String updateUser(Model model, @PathVariable("id") long id){
-//        model.addAttribute("user", userRepository.findById(id));
-//        return "edit_user";
-//    }
-//
-//    @PatchMapping ("/edit/{id}")
-//    public String updateUserPost(@ModelAttribute("user") User user) {
-//        user.setActive(true);
-//        userRepository.save(user);
-//        return redirect();
-//
-//    }
 
     @GetMapping("/{id}")
     public String getUsers(@PathVariable("id") User user, Model model) {

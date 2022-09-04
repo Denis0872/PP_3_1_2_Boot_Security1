@@ -4,13 +4,39 @@
 <head>
     <title>Spring Security Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .logoutref
+        a {
+            color: #8d8176;
+            text-decoration: none !important;
+            border: none !important;
+        }
+
+        a:hover {
+            color: #fff !important;
+        }
+
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout" class="btn btn-dark text-secondary"/>
-    </form>
+
 </head>
 <body class="bg-light">
+    <header class="text-bg-dark" p-3 row>
+        <div class="col">
+            <strong><label th:text="${user.username}">admin@email.com</label></strong>
+            <label>with roles: </label>
+            <label th:each="role : ${user.roles}">
+                <label th:text="${role}">ROLE</label>
+                &nbsp;
+            </label>
+        </div>
+        <div class='col d-flex justify-content-end'>
+            <div class="logoutref"><a th:href="@{/logout}">Logout</a></div>
+        </div>
+    </header>
 
 <section>
     <div class="container-fluid h-100">
@@ -65,6 +91,42 @@
 
 
 
-</div>
-</body>
-</html>
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!--<div class="tab-pane fade" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab"-->
+<!--     tabindex="0">-->
+<!--    <div class="container-fluid py-3">-->
+<!--        <h1>User information page</h1>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;user content&ndash;&gt;-->
+<!--    <div class="container-fluid border">-->
+<!--        <h5 class="row p-2 m-0 ">About user</h5>-->
+<!--        <div class="row bg-white p-4 border-top">-->
+<!--            <table class="table table-striped">-->
+<!--                <thead class="table border-top">-->
+<!--                <tr>-->
+<!--                    <th>ID</th>-->
+<!--                    <th>First Name</th>-->
+<!--                    <th>Last Name</th>-->
+<!--                    <th>Age</th>-->
+<!--                    <th>Email</th>-->
+<!--                    <th>Role</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody class="table" style="vertical-align: middle;">-->
+<!--                <tr>-->
+<!--                    <td th:text="${user.id}">id</td>-->
+<!--                    <td th:text="${user.firstname}">first name</td>-->
+<!--                    <td th:text="${user.lastName}">last name</td>-->
+<!--                    <td th:text="${user.age}">age</td>-->
+<!--                    <td th:text="${user.email}">email</td>-->
+<!--                    <td><label class="p-0" th:each="role : ${user.roles}">-->
+<!--                        <label class="p-0" th:text="${role}">ROLE</label>-->
+<!--                        &nbsp;-->
+<!--                    </label></td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->

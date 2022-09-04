@@ -8,19 +8,31 @@
     <title>Title</title>
 </head>
 <body>
-
+<h2>Custom Login</h2>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4 my-lg-5">
             <h2><b>Please sign in</b></h2>
-            <form class="my-3" method="post" action="/login">
-                <div class="input-group">
-                    <input type="text" id="email" name="email" class="form-control" placeholder="email" required autofocus>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block my-2">Sign in</button>
+
+            <form name="f" class="my-3" method="post" th:action="@{/login}">
+                <fieldset>
+                    <legend>Please Login</legend>
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Неправильный логин или пароль
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        Правильный логин и пароль
+                    </div>
+                    <div class="input-group">
+                        <label for="username"></label>
+                        <input class="form-control" id="username" type="email" name="username" placeholder="E-Mail">
+                        <label for="password"></label>
+                        <input class="form-control" id="password" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-block my-2">Sign in</button>
+                    </div>
+                </fieldset>
             </form>
         </div>
     </div>
