@@ -38,7 +38,7 @@ public class AdminController {
         return "edit_user";
     }
 
-    @PatchMapping ("/edit/{id}")
+    @PatchMapping ("/edit")
     public String updateUserPost(@ModelAttribute("user") User user) {
         user.setActive(true);
         userRepository.save(user);
