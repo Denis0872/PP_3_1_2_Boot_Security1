@@ -14,10 +14,20 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
-@PreAuthorize("hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class AdminController {
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public AdminController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping()
+    public String getUsers(  Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "admin";
+    }
 
     @GetMapping("/add")
     public String addUser(Model model) {
@@ -46,13 +56,7 @@ public class AdminController {
 
     }
 
-    @GetMapping("/{id}")
-    public String getUsers(@PathVariable("id") User user, Model model) {
-        List<User> users = (List<User>) userRepository.findAll();
-        model.addAttribute("user", user);
-        model.addAttribute("users", users);
-        return "admin";
-    }
+
 
 
     @DeleteMapping("/delete/{id}")
