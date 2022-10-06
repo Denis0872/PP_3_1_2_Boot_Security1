@@ -23,7 +23,7 @@ public class AdminController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping()
+    @GetMapping("/{}")
     public String getUsers(  Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "admin";
